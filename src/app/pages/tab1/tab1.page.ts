@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/interfaces/interfaces';
 import { NoticiasService } from '../../services/noticias.service';
 
 @Component({
@@ -8,11 +9,16 @@ import { NoticiasService } from '../../services/noticias.service';
 })
 export class Tab1Page implements OnInit{
 
+  //Se crea objeto 'noticias'
+  noticias: Article[] = [];
+
   constructor(private noticiasServices: NoticiasService) {}
 
   ngOnInit() {
     this.noticiasServices.getTopHeadLines().subscribe(resp => {
       console.log('noticias', resp);
+      //Adicionar nuevas noticias al arreglo, como articulos independientes
+      this.noticias.push(...resp.articles);
     });
   }
 

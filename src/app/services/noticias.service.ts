@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RespuestaTopHeadlines } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class NoticiasService {
 
   //Obtener Top Head Lines 
   getTopHeadLines() {
-    return this.http.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
+    
+    return this.http.get<RespuestaTopHeadlines>(`https://newsapi.org/v2/top-headlines?country=us&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
   }
 
 }

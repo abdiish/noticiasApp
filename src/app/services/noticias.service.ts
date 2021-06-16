@@ -13,7 +13,7 @@ export class NoticiasService {
   //Obtener Top Head Lines 
   getTopHeadLines() {
     
-    return this.http.get<RespuestaTopHeadlines>(`https://newsapi.org/v2/top-headlines?country=us&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
+    return this.http.get<RespuestaTopHeadlines>(`https://newsapi.org/v2/top-headlines?country=mx&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
   }
 
 }

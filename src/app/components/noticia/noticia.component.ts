@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Article } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-noticia',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./noticia.component.scss'],
 })
 export class NoticiaComponent implements OnInit {
+
+  //Se hace un import del indice y de la noticia
+  @Input() noticia: Article;
+  @Input() indice: number;
 
   constructor() { }
 

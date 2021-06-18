@@ -19,6 +19,9 @@ const headers = new HttpHeaders({
 
 export class NoticiasService {
 
+  //Contador de paginas para Infinite Scroll
+  headlinesPage = 0;
+
   //Se inyecta el HttpClient
   constructor( private http: HttpClient) { }
 
@@ -35,8 +38,10 @@ export class NoticiasService {
 
   //Obtener Top Head Lines 
   getTopHeadLines() {
+
+    this.headlinesPage++;
     //retorna un observable
-    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=mx`);
+    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=mx&page=${ this.headlinesPage }`); //Se le pasa el numero de la página
     //return this.http.get<RespuestaTopHeadlines>(`https://newsapi.org/v2/top-headlines?country=mx&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
   }
 

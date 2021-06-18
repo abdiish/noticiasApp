@@ -22,6 +22,10 @@ export class NoticiasService {
   //Contador de paginas para Infinite Scroll
   headlinesPage = 0;
 
+  //Se necesita regersar a la página 1 de cada categoria
+  categoriaActual = '';
+  categoriaPage = 0;
+
   //Se inyecta el HttpClient
   constructor( private http: HttpClient) { }
 
@@ -47,7 +51,15 @@ export class NoticiasService {
 
   //Categoria 
   getTopHeadLinesCategoria( categoria: string ) {
-    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=mx&category=${ categoria }`); //Uso de template string ${categoria}
+    //Validar si la categoria actual es igual a la que se esta recibiendo como argumento
+    if(this.categoriaActual === categoria){
+        this.categoriaPage++;
+    }else{
+      this.categoriaPage = 1;
+      this.categoriaActual = categoria;
+    }
+
+    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=mx&category=${ categoria }&page=${ this.categoriaPage }`); //Uso de template string ${categoria}
     //return this.http.get(`https://newsapi.org/v2/top-headlines?country=de&category=business&apiKey=50be7885985b4ba38ccebf9fd4d83731`);
   }
 }

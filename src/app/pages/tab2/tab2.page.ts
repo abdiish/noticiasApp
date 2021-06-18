@@ -41,9 +41,9 @@ export class Tab2Page implements OnInit{
 
     //this.segment.value = this.categorias[0];
 
-    this.noticiasService.getTopHeadLinesCategoria( categoria)
+    this.noticiasService.getTopHeadLinesCategoria(categoria)
        .subscribe(resp => {
-           console.log(resp);
+           //console.log(resp);
            this.noticias.push(...resp.articles);
 
            if(event){

@@ -10,13 +10,15 @@
     <ion-segment-button mode="md"
                         *ngFor="let categoria of categorias"
                         [value]="categoria">
-      <ion-label>{{categoria}}</ion-label>
+      <ion-label text-capitalize>{{categoria}}</ion-label>
     </ion-segment-button>
 
   </ion-segment>
 
 </ion-header>
 
-<ion-content>
+<ion-content color="dark">
+
+  <app-noticias [noticias]="noticias"></app-noticias>
   
 </ion-content>

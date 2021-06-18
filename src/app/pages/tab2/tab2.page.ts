@@ -1,5 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonSegment } from '@ionic/angular';
+import { NoticiasService } from '../../services/noticias.service';
+import { Article } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-tab2',
@@ -8,15 +10,28 @@ import { IonSegment } from '@ionic/angular';
 })
 export class Tab2Page implements OnInit{
 
- @ViewChild(IonSegment) segment: IonSegment;
+ @ViewChild(IonSegment, {static: true}) segment: IonSegment;
 
   //Arreglo de categorias
-  categorias = ['busines', 'entertainment', 'general', 'healths', 'cience', 'sports', 'technology']; 
+  categorias = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
+  
+  noticias: Article[] = [];
 
-  constructor() {}
+  constructor(private noticiasService: NoticiasService) {
+
+
+  }
 
   ngOnInit() {
+    
     this.segment.value = this.categorias[0];
+
+   this.noticiasService.getTopHeadLinesCategoria( this.categorias[0] )
+      .subscribe(resp => {
+          console.log(resp);
+          this.noticias.push(...resp.articles)
+
+      });
   }
 
 }

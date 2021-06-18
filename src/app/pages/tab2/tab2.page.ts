@@ -26,12 +26,28 @@ export class Tab2Page implements OnInit{
     
     this.segment.value = this.categorias[0];
 
-   this.noticiasService.getTopHeadLinesCategoria( this.categorias[0] )
-      .subscribe(resp => {
-          console.log(resp);
-          this.noticias.push(...resp.articles)
-
-      });
+    this.cargarNoticias(this.categorias[0]);
   }
+
+  cambioCategoria( event ) {
+
+    this.noticias = [];
+
+    this.cargarNoticias(event.detail.value);
+
+  }
+
+  cargarNoticias(categoria: string) {
+
+    //this.segment.value = this.categorias[0];
+
+    this.noticiasService.getTopHeadLinesCategoria( categoria)
+       .subscribe(resp => {
+           console.log(resp);
+           this.noticias.push(...resp.articles);
+ 
+       });
+
+   }
 
 }

@@ -17,7 +17,8 @@
 
 
   <app-noticias *ngIf="datalocalService.noticias.length > 0"
-                [noticias]= "datalocalService.noticias">
+                [enFavoritos]="true"
+                [noticias]="datalocalService.noticias">
 
   </app-noticias>
 

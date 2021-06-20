@@ -12,6 +12,7 @@ export class DataLocalService{
 
   constructor(private storage: Storage) { 
     this.init();
+    this.cargarFavoritos();//Se dispara cuando la aplicaciòn necesite el servicio de storage, cuando intenetemos insertar favoritos
   }
 
   async init() {
@@ -36,8 +37,20 @@ export class DataLocalService{
   }
 
   //Cargar lista de favoritos
-  cargarFavoritos(){
+  async cargarFavoritos(){
 
+    const favoritos = await this.storage.get('favoritos');
+
+    if(favoritos){
+      this.noticias = favoritos
+    }
+     
+    //console.log('Async away', favoritos);
+
+    /* this.storage.get('favoritos')
+      .then( favoritos => {
+        console.log('favoritos', favoritos);
+      }); */
   }
 
 }
